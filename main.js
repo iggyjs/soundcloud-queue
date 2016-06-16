@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+	console.log("updated")
   	$("#play").on('click', function(){
 	  	resolveAndPlayURL();  	
 	});
