@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>busy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+
+  <!-- vendor -->
+  <link rel="stylesheet" type="text/css" href="css/vendor/foundation.css">
+  <link rel="stylesheet" type="text/css" href="css/vendor/animate.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="css/vendor/toastr/toastr.css">
+  <script type="text/javascript" src="js/vendor/parse/parse.min.js"></script>
+  <script type="text/javascript" src="js/vendor/jquery.min.js"></script>
+  <script type="text/javascript" src="js/vendor/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="js/vendor/underscore-min.js"></script>
+  <script type="text/javascript" src="js/vendor/toastr/toastr.js"></script>
+  <script type="text/javascript" src="js/vendor/notify/notify.js"></script>
+  <script type="text/javascript" src="js/vendor/momentjs/moment.js"></script>
+  <!-- vendor -->
+
+  <!-- productive -->
+  <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/home.js"></script>
+  <script type="text/javascript" src="js/header.js"></script>
+  <!-- productive -->
+
+  <style type="text/css">
+    html{font-family: 'Lato', sans-serif !important;}
+    input{ font-family: 'Lato', sans-serif !important;}
+  </style>
+</head>
+<body>
+  <style>
+  .menu-item {
+    height:47px;
+    background-color:#ffffff;
+    transition: background 0.3s linear;
+    -webkit-transition: background 0.3s linear;
+    -moz-transition: background 0.3s linear;
+  }
+</style>
+
+<div style="position:relative" id="navbar" class="fixed">
+  <strong class="show-for-medium-up">
+    <section class="top-bar-section">
+      <ul style="padding:0; margin:0; height:34px">
+        <li style="list-style-type:none;"><a class="menu-logo" style="height:47px;background-color:#ffffff;transition: background 0.3s linear; -webkit-transition: background 0.3s linear;-moz-transition: background 0.3s linear;" href="index.html"><img style="height:32px; margin-bottom:2px;" src="img/busy_logo_small.png"></a></li>
+        <li style="list-style-type:none;"><a class="menu-item" style="background-color:#ffffff; color:#000000; font-family: 'Lato', sans-serif; font-weight:600; font-size:9px; letter-spacing:1px; transition: background 0.3s linear; -webkit-transition: background 0.3s linear;-moz-transition: background 0.3s linear;" href="about.html">ABOUT</a></li>
+         <li class="settingsButton" style="list-style-type:none;"><a class="menu-item" style="background-color:#ffffff; color:#000000; font-family: 'Lato', sans-serif; font-weight:600; font-size:9px; letter-spacing:1px; transition: background 0.3s linear; -webkit-transition: background 0.3s linear;-moz-transition: background 0.3s linear;" href="settings.html">SETTINGS</a></li>
+        <li class="logOutButton" style="list-style-type:none;"><a class="menu-item" style="background-color:#ffffff; color:#000000; font-family: 'Lato', sans-serif; font-weight:600; font-size:9px; letter-spacing:1px; transition: background 0.3s linear; -webkit-transition: background 0.3s linear;-moz-transition: background 0.3s linear;" href="#">LOGOUT</a></li>
+      </ul>
+    </section>
+  </strong>
+  <strong class="show-for-small-only">
+      <ul style="padding:0; margin:0; height:38px">
+        <li style="float:right; list-style-type:none; display:inline"><a id="burger"><img style="height:30px; margin-top:5px; padding-right:4px" src="img/hamburger.png"></a></li>
+      </ul>
+  </strong>
+
+  <div style="display:none; position: relative" id="mobileDropdown">
+    <div class="small-12 columns menu-item"><a style="color:#000000; font-family: 'Lato', sans-serif; font-weight:600; font-size:10px; letter-spacing:1px; padding-left:10px; display:block; margin-top:15px " href="home.html">HOME</a></div>
+    <div class="small-12 columns menu-item"><a style="color:#000000; font-family: 'Lato', sans-serif; font-weight:600; font-size:10px; letter-spacing:1px; padding-left:10px; display:block; margin-top:15px " href="about.html">ABOUT</a></div>
+     <div class="settingsButton small-12 columns menu-item"><a style="color:#000000; font-family: 'Lato', sans-serif; font-weight:600; font-size:10px; letter-spacing:1px; padding-left:10px; display:block; margin-top:15px " href="home.html">SETTINGS</a></div>
+    <div class="logOutButton small-12 columns menu-item"><a style="color:#000000; font-family: 'Lato', sans-serif; font-weight:600; font-size:10px; letter-spacing:1px; padding-left:10px; display:block; margin-top:15px " href="#">LOGOUT</a></div>
+  </div>
+
+</div>
+<hr id="menuRule" style="margin:0;">
+
+
+  <div id="mainContent" class="row" style="padding-top:35px; ">
+    <div class="medium-6 columns">
+      <!-- <center> -->
+
+          <h1 id="mainDailyHeader" class="fade-in" style="font-family:'Lato', sans-serif; font-size:18px; opacity:0; text-align: left; padding-bottom:10px">Your Daily To-Do List</h1>
+
+        <!--   <div style="text-align:left; margin-top:10px" id="switchDays">
+            <i style="display:inline; cursor:pointer" id="yesterday"> < </i><h1 class="fade-in" style="font-family:'Lato', sans-serif; font-size:20px; opacity:0; text-align: left; display:inline">Today</h1><i style="display:inline; cursor:pointer" id="tomorrow"> > </i>
+          </div> -->
+
+        <form id="dailyItemsForm">
+          <div style="z-index:1;" id="dailyItems">
+            <!-- <input id="input0" type="text" class="fade-in" name="name" style="height:38px; opacity:1; font-family:'Lato', sans-serif;  padding-left:8px; border: 1px solid #585858;opacity:0 ; color:grey;" placeholder="Item 1"> -->
+            <div class="new-daily" style="height:38px; margin-bottom:15px;">
+            <input id="input0" type="text" class="fade-in remove-first-daily daily-counter-class second-daily-counter-class" name="name" style="font-size:13px; padding-top:19px; padding-bottom:19px; margin:0px; height:38px; padding-left:8px; border: 1px solid #585858; width:92%; float:left;color:grey; opacity:0; " placeholder="Item 1"><a class="remove-daily fade-in hover-effect-close first-input-daily" style="color:black; opacity:0; transition: color 0.2s linear; -webkit-transition: color 0.2s linear;-moz-transition: color 0.2s linear; float:left "><i style="padding-top:15px; margin-left:7px" class="fa fa-check"></i></a>
+
+            </div>
+          </div>
+          <div>
+           <button id="saveDaily" class="fade-in hover-effect-black" style="float:left; font-family:'Lato', sans-serif; background-color:#ffffff; min-width:139.266px;color:black; font-size:12px; opacity:0; font-family: 'Lato', sans-serif; font-weight:400; letter-spacing:2px; text-transform:uppercase; border: solid 1px #BDBDBD; transition: background 0.3s linear; -webkit-transition: background 0.3s linear;-moz-transition: background 0.3s linear;">save list</button>
+          <!--  <a class="fade-in hover-effect-black removeDaily" style="color:black; margin-left:7px; float:left; height:50px; padding-top:13px; padding-bottom:16px; padding-left:21px; padding-right:21px;  border: solid 1px #BDBDBD; opacity:0; transition: background 0.3s linear; -webkit-transition: background 0.3s linear;-moz-transition: background 0.3s linear;">-</a> -->
+           <a class="fade-in hover-effect-black" id="addDaily" style="color:black; margin-left:7px; float:left; height:50px; padding-top:13px; padding-bottom:16px; padding-left:20px; padding-right:20px; border: solid 1px #BDBDBD; opacity:0; transition: background 0.3s linear; -webkit-transition: background 0.3s linear;-moz-transition: background 0.3s linear;">+</a>
+          </div>
+        </form>
+      </center>
+    </div>
+    <div class="medium-6 columns">
+      <center>
+        <h1 class="fade-in" style="font-family:'Lato', sans-serif; font-size:18px; opacity:0; text-align: left; padding-bottom:10px;">Your Weekly To-Do List</h1>
+        <form id="weeklyItemsForm">
+          <div id="weeklyItems">
+            <div class="new-weekly" style="height:38px; margin-bottom:15px;">
+            <input id="weeklyInput0" type="text" class="fade-in remove-first weekly-counter-class second-weekly-counter-class" name="name" style="font-size:13px; padding-top:19px; padding-bottom:19px; margin:0px; height:38px; padding-left:8px; border: 1px solid #585858; width:92%; float:left;color:grey; opacity:0; " placeholder="Item 1"><a class="remove-weekly fade-in hover-effect-close first-input-weekly" style="color:black; opacity:0; transition: color 0.2s linear; -webkit-transition: color 0.2s linear;-moz-transition: color 0.2s linear; float:left "><i style="padding-top:15px; margin-left:7px" class="fa fa-check"></i></a>
+            </div>
+          </div>
+          <div>
+           <button id="saveWeekly" class="fade-in hover-effect-black" style="float:left; font-family:'Lato', sans-serif; background-color:#ffffff; min-width:139.266px;color:black; font-size:12px; opacity:0; font-family: 'Lato', sans-serif; font-weight:400; letter-spacing:2px; text-transform:uppercase; border: solid 1px #BDBDBD; transition: background 0.3s linear; -webkit-transition: background 0.3s linear;-moz-transition: background 0.3s linear;">save list</button>
+           <!-- <a class="fade-in hover-effect-black" id="removeWeekly" style="color:black; margin-left:7px; float:left; height:50px; padding-top:13px; padding-bottom:16px; padding-left:21px; padding-right:21px;  border: solid 1px #BDBDBD; opacity:0; transition: background 0.3s linear; -webkit-transition: background 0.3s linear;-moz-transition: background 0.3s linear;">-</a> -->
+           <a class="fade-in hover-effect-black" id="addWeekly" style="color:black; margin-left:7px; float:left; height:50px; padding-top:13px; padding-bottom:16px; padding-left:20px; padding-right:20px; border: solid 1px #BDBDBD; opacity:0; transition: background 0.3s linear; -webkit-transition: background 0.3s linear;-moz-transition: background 0.3s linear;">+</a>
+          </div>
+        </form>
+      <!-- </center> -->
+    </div>
+  </div>
+
+
+  <script src="js/vendor/foundation/foundation.js"></script>
+  <script src="js/vendor/foundation.min.js"></script>
+  <script src="js/vendor/fastclick.js"></script>
+</body>
+</html>
