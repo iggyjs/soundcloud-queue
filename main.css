@@ -1,0 +1,12 @@
+.song-player-button{
+	color:#434343;
+}
+
+.song-player-button:hover{
+	color:#434343;
+}
+
+#songPlayer{
+	margin: auto;
+	display: inline-block;
+}

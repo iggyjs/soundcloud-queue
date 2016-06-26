@@ -11,18 +11,21 @@
 	<script type="text/javascript" src="popup.js"></script>
 </head>
 <body>
-  <div style="width:250px;" class="row">
-	<div class="medium-12 columns">
-	  <center>
-	  	<input type="text" placeholder="song url">
-	  	<button class="yo" style="background-color:white; color:black; border:1px solid grey"><i class="fa fa-plus"></i></button><br>
-		<button style="background-color:white; color:black; border:1px solid grey" id="back"><i class="fa fa-backward" aria-hidden="true"></i></button>
-		<button style="background-color:white; color:black; border:1px solid grey" id="pause"><i class="fa fa-pause" aria-hidden="true"></i></button>
-		<button style="background-color:white; color:black; border:1px solid grey" id="play"><i class="fa fa-play" aria-hidden="true"></i></button>
-		<button style="background-color:white; color:black; border:1px solid grey" id="forward"><i class="fa fa-forward" aria-hidden="true"></i></button>
-	  </center>
+  <div style="width:1200px;" class="">
+	<div class="medium-6 columns">
+	  <div id="songPlayer">
+		  	<a class="song-player-button" ><i class="fa fa-plus"></i></a><br>
+			<a class="song-player-button" id="back"><i class="fa fa-backward" aria-hidden="true"></i></a>
+			<a class="song-player-button" id="pause"><i class="fa fa-pause" aria-hidden="true"></i></a>
+			<a class="song-player-button" id="play"><i class="fa fa-play" aria-hidden="true"></i></a>
+			<a class="song-player-button" id="forward"><i class="fa fa-forward" aria-hidden="true"></i></a>
+	  </div>	  
 	</div>
+	  <div class="medium-6 columns">
+  	<input type="text" placeholder="song url">
   </div>
-  
+
+  </div>
+ 
 </body>
 </html>
