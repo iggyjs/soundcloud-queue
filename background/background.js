@@ -4,6 +4,7 @@ function sendMessage(tabId, message, callback){
   });
 }
 
+console.log($.fn.jquery);
 chrome.tabs.query({url: "http://example.com/"}, function(tabs) {
   console.log("message sent");
   sendMessage(tabs[0].id, {greeting: "hello"});

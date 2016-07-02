@@ -22,7 +22,7 @@
     }
   ],
   "background": {
-    "scripts": ["background/background.js"],
+    "scripts": ["js/jquery.min.js", "background/background.js"],
     "persistent" : false
   },
   "web_accessible_resources": [
