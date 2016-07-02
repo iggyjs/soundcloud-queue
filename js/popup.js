@@ -1,4 +1,11 @@
 $(function(){
+	new Vue({
+	  el: '#app',
+	  data: {
+	    message: 'Hello Vue.js!'
+	  }
+	})
+
 	$("#play").on('click', function(){
 		chrome.tabs.query({url: "http://example.com/"}, function(tabs) {
 		  chrome.tabs.sendMessage(tabs[0].id, {command: "play"}, function(response) {
