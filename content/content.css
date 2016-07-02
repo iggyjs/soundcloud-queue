@@ -1,0 +1,15 @@
+.notify-error {
+	position:relative;
+	width:100%;
+	background-color:#FF5C5C;
+	height:45px;
+	color:white;
+	/*display:none;*/
+	text-align:center;
+	padding:5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-weight: 300;
+	font-size:15px;
+	font-family:'Nunito', sans-serif;
+}
