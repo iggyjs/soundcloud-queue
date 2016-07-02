@@ -15,7 +15,6 @@ ul{
 #header{
 	font-family: 'Source Sans Pro', sans-serif !important; 
 	font-size: 18px;
-	font-weight: 600;
 	color:#434343;
 	letter-spacing: 3px;
 	text-transform: uppercase;
@@ -24,7 +23,7 @@ ul{
 }
 
 .main-container{
-	width:350px;
+	width:320px;
 	min-height:300px;
 	max-height:500px;
 	overflow: scroll;
@@ -35,16 +34,25 @@ ul{
 }
 
 .song-banner{
-	margin-top: 10px;
-	margin-bottom: 14px;
-	border-bottom:1px solid #434343;
+	margin-top: 4px;
+	border-bottom:1px solid #ABABAB;
 	padding: 10px;
-	padding-bottom: 15px;
+	padding-bottom: 13px;
 }
 
 .song-thumb{
-	height:40px;
-	width: 40px;
+	height:24px;
+	width: 24px;
+}
+
+.song-name{
+	font-size: 12px;
+	display: block;
+}
+
+.song-artist{
+	font-size:10px;
+	display: block;
 }
 
 .song-player-button{

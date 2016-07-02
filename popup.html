@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="css/main.css">
 	<script src="js/jquery.min.js" type="text/javascript"></script>
 	<script src="js/vue.min.js" type="text/javascript"></script>
+	<script src="js/Sortable.min.js" type="text/javascript"></script>
+	<script src="js/vue-sortable.js" type="text/javascript"></script>
 	<script src="js/popup.js" type="text/javascript"></script>
 </head>
 <body>
@@ -15,15 +17,15 @@
   	<h1 id="header">Your Queue</h1>
   </div>
   <div class="main-container">
-  	<ul id="queue">
-	  <li v-for="song in songs">
+  	<ul id="queue" class="list-group" v-sortable>
+	  <li class="list-group-item" v-for="song in songs">
 	  	<div class="song-banner row">
-	  		<div class="small-3 columns">
+	  		<div class="small-2 columns">
 	  			<img class="song-thumb" src="" alt="">
 	  		</div>
-	  		<div class="small-9 columns">
-	  			<span>{{song.name}}</span>
-	  			<span>{{song.artist}}</span>
+	  		<div class="small-10 columns">
+	  			<span class="song-name">{{song.name}}</span>
+	  			<span class="song-artist">{{song.artist}}</span>
 	  		</div>
 	  	</div>
 	  </li>
