@@ -6,7 +6,16 @@ console.log("initialized");
 var paused;
 var stream = new Audio();		
 var counter = 0;
-var urls = ["https://soundcloud.com/samsin111/thug-juice","https://soundcloud.com/weirdinside/breathing-as-we-know-ep-out-211-vinyl-pre-order-211", "https://soundcloud.com/quietluke/blue-day-3"];
+var songs = [
+	{"url":"https://soundcloud.com/samsin111/thug-juice", "name": "Thug Juice", "artist": "samsin"},
+	{"url": "https://soundcloud.com/weirdinside/breathing-as-we-know-ep-out-211-vinyl-pre-order-211", "name":"breathing", "artist":"weirdinside"},
+	{"url": "https://soundcloud.com/quietluke/blue-day-3", "name":"Blue Day", "artist": "Quiet Luke"}
+];
+
+function songsGetter(){
+	return songs;
+}
+
 
 function nextSong(){
 	console.log("next song called");
@@ -26,7 +35,7 @@ function previousSong(){
 
 function resolveAndPlayUrl(){
 	if(!paused){
-		SC.get("https://api.soundcloud.com/resolve/?url=" + urls[counter], {limit: 1}, function(result){
+		SC.get("https://api.soundcloud.com/resolve/?url=" + songs[counter].url, {limit: 1}, function(result){
 		    var xhr = new XMLHttpRequest();
 
 		    client_id = '?client_id=d4ab52d80ed2e7790c3a243495b30093';
@@ -83,7 +92,11 @@ chrome.runtime.onMessage.addListener(
 			console.log("song playing");
 			sendResponse({commandResponse: "stillPlaying"});
 		}
+    } else if (request.command == "getSongs"){
+    	var songs = songsGetter();
+    	sendResponse({songs: songs});
     }
+
 });
 
 

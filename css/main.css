@@ -1,7 +1,52 @@
-.main-container{
-	width:250px;
-	min-height:400px;
+body{
+	height: 100%;
+	font-family: 'Source Sans Pro', sans-serif !important; 
+	max-height: 500px;
 }
+
+ul{
+	margin-left: 0;
+}
+#topbar{
+	height:70px;
+	background-color: #FF9B9B;
+}
+
+#header{
+	font-family: 'Source Sans Pro', sans-serif !important; 
+	font-size: 18px;
+	font-weight: 600;
+	color:#434343;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	text-align: center;
+	padding-top: 22px;
+}
+
+.main-container{
+	width:350px;
+	min-height:300px;
+	max-height:500px;
+	overflow: scroll;
+}
+
+#queue{
+	list-style-type: none;
+}
+
+.song-banner{
+	margin-top: 10px;
+	margin-bottom: 14px;
+	border-bottom:1px solid #434343;
+	padding: 10px;
+	padding-bottom: 15px;
+}
+
+.song-thumb{
+	height:40px;
+	width: 40px;
+}
+
 .song-player-button{
 	color:#434343;
 }
@@ -13,4 +58,8 @@
 #songPlayer{
 	margin: auto;
 	display: inline-block;
+}
+
+.player-container{
+	height:50px;
 }

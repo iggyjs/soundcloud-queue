@@ -1,10 +1,6 @@
 $(function(){
-	new Vue({
-	  el: '#app',
-	  data: {
-	    message: 'Hello Vue.js!'
-	  }
-	})
+	returnAllSongs();
+	
 
 	$("#play").on('click', function(){
 		chrome.tabs.query({url: "http://example.com/"}, function(tabs) {
@@ -35,14 +31,13 @@ $(function(){
 		// clear input value
 		$("#addSongInput").val('');
 	});
-	 $("#forward").on('click', function(){
+	$("#forward").on('click', function(){
       	chrome.tabs.query({url: "http://example.com/"}, function(tabs) {
 		  chrome.tabs.sendMessage(tabs[0].id, {command: "nextSong"}, function(response) {
 		    console.log(response.commandResponse);
 		  });
 		});
     });
-
     $("#back").on('click', function(){
       chrome.tabs.query({url: "http://example.com/"}, function(tabs) {
 		  chrome.tabs.sendMessage(tabs[0].id, {command: "previousSong"}, function(response) {
@@ -51,3 +46,18 @@ $(function(){
 	  });
     });
 });
+
+function returnAllSongs(){
+  chrome.tabs.query({url: "http://example.com/"}, function(tabs) {
+		chrome.tabs.sendMessage(tabs[0].id, {command: "getSongs"}, function(response) {
+			var songs = response.songs;
+			console.log(songs);
+	    	var queue = new Vue({
+	    		el: "#queue",
+	    		data: {
+	    			songs: songs
+	    		}
+	    	})
+	  	});
+  });
+}
