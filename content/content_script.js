@@ -19,7 +19,7 @@ function songsGetter(){
 
 function nextSong(){
 	console.log("next song called");
-	if (counter != (urls.length-1) ){
+	if (counter != (songs.length-1) ){
       counter ++;
       resolveAndPlayUrl();
   	}
