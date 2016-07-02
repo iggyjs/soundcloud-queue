@@ -57,18 +57,4 @@
      //     paused = false;
      //   }
      //  });
-
-    $("#forward").on('click', function(){
-      if (counter != (urls.length-1) ){
-        counter ++;
-        resolveAndPlayURL();
-      }
-    });
-
-    $("#back").on('click', function(){
-      if (counter != 0){
-        counter --;
-        resolveAndPlayURL();
-      }
-    });
 });
