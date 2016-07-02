@@ -4,8 +4,17 @@ function sendMessage(tabId, message, callback){
   });
 }
 
-console.log($.fn.jquery);
-chrome.tabs.query({url: "http://example.com/"}, function(tabs) {
-  console.log("message sent");
-  sendMessage(tabs[0].id, {greeting: "hello"});
-});
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    console.log(request);
+    if (request.greeting == "yo")
+      sendResponse({farewell: "goodbye"});
+  });
+// document.getElementById("play").addEventListener("click", function(){
+//     document.getElementById("test").innerHTML = "Hello World";
+// });
+
+// chrome.tabs.query({url: "http://example.com/"}, function(tabs) {
+//   console.log("message sent");
+//   sendMessage(tabs[0].id, {greeting: "hello"});
+// });
