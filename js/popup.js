@@ -1,4 +1,6 @@
 $(function(){
+	console.log("creating alarm:")
+	chrome.alarms.create("myAlarm", {delayInMinutes: 0, periodInMinutes: 0.0166} );
 	$("#play").on('click', function(){
 		chrome.tabs.query({url: "http://example.com/"}, function(tabs) {
 		  chrome.tabs.sendMessage(tabs[0].id, {command: "play"}, function(response) {
