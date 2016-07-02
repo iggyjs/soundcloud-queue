@@ -16,7 +16,7 @@
         "https://*/*"
       ],
       "css": ["content/content.css"],
-      "js": ["js/jquery.min.js", "content/content_script.js"],
+      "js": ["js/sdk.js", "js/jquery.min.js", "content/content_script.js"],
       "run_at": "document_start",
       "all_frames": false
     }
