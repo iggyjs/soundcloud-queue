@@ -13,4 +13,16 @@ $(function(){
 		  });
 		});
 	});
+	$("#addSongButton").on('click', function(){
+		console.log("updated");
+		//send message to content script
+		var passedUrl = $("#addSongInput").val();
+		chrome.tabs.query({url: "http://example.com/"}, function(tabs) {
+		  chrome.tabs.sendMessage(tabs[0].id, {command: "addSong", url:passedUrl }, function(response) {
+		    console.log(response.commandResponse);
+		  });
+		});
+		// clear input value
+		$("#addSongInput").val('');
+	});
 });

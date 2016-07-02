@@ -37,16 +37,23 @@ function pauseStream(){
 	} 
 }
 
+function pushSong(url){
+	urls.push(url);
+	console.log(urls);
+}
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    
     if (request.command == "play") {
       resolveAndPlayUrl();
       sendResponse({commandResponse: "playing"});
     } else if (request.command == "pause"){
       pauseStream(paused);
       sendResponse({commandResponse: "paused"});
+    }
+    else if (request.command == "addSong"){
+    	pushSong(request.url);
+    	sendResponse({commandResponse: "song added"});
     }
 });
 
