@@ -93,17 +93,17 @@ chrome.runtime.onMessage.addListener(
 			sendResponse({commandResponse: "stillPlaying"});
 		}
     } else if (request.command == "getSongs"){
-    	var songs = songsGetter();
-    	sendResponse({songs: songs});
+    	// var songs = songsGetter();
+    	console.log("getSongs called")
+    	sendResponse({"songs": songs});
     }
 
 });
 
-
-
-// console.log('called');
 // $.get(chrome.extension.getURL('templates/notification.html'), function(data) {
-//     var div = $("div");
-//     div.append(data);
+//     // var div = $(".sc-button-group");
+//     var div = document.getElementsByClassName("sc-button-group");
+//     console.log(div);
+//     // div.append(data);
 // });
-// //
+//
