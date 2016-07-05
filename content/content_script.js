@@ -67,6 +67,17 @@ function pushSong(url){
 	console.log(urls);
 }
 
+var port = chrome.runtime.connect({name: "extensionRequests"});
+port.onMessage.addListener(function(req) {
+  if (req.command == "getSongs"){
+  	var songs = songsGetter();
+    port.postMessage({songs: songs});
+  }
+});
+
+
+
+
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.command == "play") {
@@ -95,7 +106,7 @@ chrome.runtime.onMessage.addListener(
     } else if (request.command == "getSongs"){
     	// var songs = songsGetter();
     	console.log("getSongs called")
-    	sendResponse({"songs": songs});
+    	sendResponse({songs: songs});
     }
 
 });

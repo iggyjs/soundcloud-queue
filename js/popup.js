@@ -46,18 +46,32 @@ $(function(){
 	  });
     });
 });
+chrome.runtime.onConnect.addListener(function(port){
+
+	port.postMessage({greeting:"hello"});
+});
+
 
 function returnAllSongs(){
-  chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tabs) {
-		chrome.tabs.sendMessage(tabs[0].id, {command: "getSongs"}, function(response) {
-			var songs = response.songs;
-			console.log(songs);
-	    	var queue = new Vue({
-	    		el: "#queue",
-	    		data: {
-	    			songs: songs
-	    		}
-	    	})
-	  	});
-  });
+
+  // chrome.tabs.query({currentWindow: true}, function(tabs) {
+  // 	  for (var i=0; i<tabs.length; i++){
+		// chrome.tabs.sendMessage(tabs[i].id, {command: "getSongs"}, function(response) {
+		// 	console.log(tabs);
+		// 	console.log(response);
+		// 	// var songs = response.songs;
+		// 	// console.log(songs);
+	 //  //   	var queue = new Vue({
+	 //  //   		el: "#queue",
+	 //  //   		data: {
+	 //  //   			songs: songs
+	 //  //   		}
+	 //  //   	})
+	 //  	});
+	 //  }
+  // });
+}
+
+function test(response){
+	console.log()
 }
