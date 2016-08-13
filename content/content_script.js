@@ -36,7 +36,7 @@ window.onload = function (){
 			        var payload = {
 			        	name: songName,
 			        	artist: artistName,
-			        	link: songLink,
+			        	url: songLink,
 			        	artwork: artwork
 			        }
 
