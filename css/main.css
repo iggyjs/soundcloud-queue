@@ -38,6 +38,7 @@ ul{
 	border-bottom:1px solid #ABABAB;
 	padding: 10px;
 	padding-bottom: 13px;
+	cursor: pointer;
 }
 
 .song-thumb{

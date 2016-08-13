@@ -19,7 +19,7 @@
   <div id="queue" class="main-container">
   	<ul class="list-group" v-sortable>
 	  <li class="list-group-item" v-for="song in songs">
-	  	<div class="song-banner row">
+	  	<div v-on:click="removeSong(song)" class="song-banner row">
 	  		<div class="small-2 columns">
 	  			<img class="song-thumb" src="" alt="">
 	  		</div>

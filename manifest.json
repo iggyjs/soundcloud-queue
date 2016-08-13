@@ -12,13 +12,12 @@
   "content_scripts":[
     {
       "matches":[
-        "http://*/*",
-        "https://*/*"
+        "http://soundcloud.com/*",
+        "https://soundcloud.com/*"
       ],
       "css": ["content/content.css"],
-      "js": ["js/sdk.js", "js/jquery.min.js", "content/content_script.js"],
-      "run_at": "document_end",
-      "all_frames": false
+      "js": ["content/content_script.js"],
+      "run_at": "document_end"
     }
   ],
   "background": {

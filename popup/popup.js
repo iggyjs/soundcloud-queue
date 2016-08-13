@@ -36,23 +36,19 @@ $(function(){
     					if(response.songs){
     						var songToAddIndex = (response.songs.length - 1);
     						vueInstance.$data.songs.push(response.songs[songToAddIndex]);
+    						// clear input value
+							$("#addSongInput").val('');
     					}
-		    			
+		    			// FIXME: Add error handling
 		  			});
+    			},
+    			removeSong: function(song){
+    				console.log(song.name);
     			}
     		}
 	})
 	returnAllSongs(queue);
-
-
-
-		
-		// chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tabs) {
-		
-		// });
-		// // clear input value
-		// $("#addSongInput").val('');
-
+	
 });
 
 
