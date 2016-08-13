@@ -73,8 +73,9 @@ function pauseStream(){
 }
 
 function pushSong(url){
-	urls.push(url);
-	console.log(urls);
+	
+	console.log(songs);
+
 }
 
 var port = chrome.runtime.connect({name: "extensionRequests"});
@@ -100,21 +101,31 @@ chrome.runtime.onMessage.addListener(
       nextSong();
       sendResponse({commandResponse: "next song command processed"});
     } else if (request.command == "previousSong"){
+      
       previousSong();
       sendResponse({commandResponse: "previous song command processed"});
+
     } else if (request.command == "addSong"){
-    	pushSong(request.url);
-    	sendResponse({commandResponse: "song added"});
+
+    	var newObj = {
+			"url" : "",
+			"name" : "tempName",
+			"artist": "tempArtistName"
+		};
+
+		newObj['url'] = request.url;
+		songs.push(newObj);
+    	sendResponse({commandResponse: "song added", songs:songs});
+
     } else if (request.command == "check"){
     	if(stream.ended){
 			nextSong();
-			sendResponse({commandResponse: "nextCalled	"});
+			sendResponse({commandResponse: "nextCalled"});
 		} else {
 			console.log("song playing");
 			sendResponse({commandResponse: "stillPlaying"});
 		}
     } else if (request.command == "getSongs"){
-    	// var songs = songsGetter();
     	console.log("getSongs called")
     	sendResponse({songs: songs});
     }
