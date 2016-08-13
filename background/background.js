@@ -128,6 +128,10 @@ chrome.runtime.onMessage.addListener(
     } else if (request.command == "getSongs"){
     	console.log("getSongs called")
     	sendResponse({songs: songs});
+    } 
+    else if (request.command == "addSongContentScript"){
+    	console.log(request);
+    	sendResponse({commandResponse: "payload received!"});
     }
 
 });

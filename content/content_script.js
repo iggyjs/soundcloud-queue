@@ -20,7 +20,25 @@ window.onload = function (){
 				var songBanner = $(this.$el).parent().parent().parent()[0];
 				var artwork = $($(songBanner).find("span.sc-artwork")[0]).css("background-image");
 		        artwork = artwork.replace('url(','').replace(')','').replace(/\"/gi, "");
-		        console.log(artwork);
+		        var songName = $(songBanner).find("a.soundTitle__title")[0].innerText;
+		     	var artistName = $(songBanner).find("div.soundTitle__secondary")[0].innerText;
+		     	var songLink = $(songBanner).find("a.soundTitle__title")[0].href;
+		     	
+		     	if (songLink.indexOf("/sets/") == -1){
+			        var payload = {
+			        	name: songName,
+			        	artist: artistName,
+			        	link: songLink,
+			        	artwork: artwork
+			        }
+			        chrome.runtime.sendMessage({command: "addSongContentScript", song: payload}, function(response){
+			        	console.warn("======== response =======");
+			        	console.log(response);
+			        });
+			    }
+			    else {
+			    	alert("We don't do sets ... yet!");
+			    }
 		  	}
 		  }
 
@@ -42,8 +60,6 @@ window.onload = function (){
 
 	}	
 
-
-	
 }
 
 function checkForMoreButtons(){
@@ -59,11 +75,29 @@ function checkForMoreButtons(){
 
 		var button = new ButtonComponent({
 		  data: {
-		    buttonText: 'test'
+		    buttonText: 'Add'
 		  },
 		  methods: {
 		  	handleClickTest: function(){
-		  		console.log(this);
+		  		var songBanner = $(this.$el).parent().parent().parent()[0];
+				var artwork = $($(songBanner).find("span.sc-artwork")[0]).css("background-image");
+		        artwork = artwork.replace('url(','').replace(')','').replace(/\"/gi, "");
+		        var songName = $(songBanner).find("a.soundTitle__title")[0].innerText;
+		        var artistName = $(songBanner).find("div.soundTitle__secondary")[0].innerText;
+		        var songLink = $(songBanner).find("a.soundTitle__title")[0].href;
+
+		        if (songLink.indexOf("/sets/") == -1){
+			        var payload = {
+			        	name: songName,
+			        	artist: artistName,
+			        	link: songLink,
+			        	artwork: artwork
+			        }
+			        console.log(payload);
+			    }
+			    else {
+			    	alert("set!");
+			    }
 		  	}
 		  }
 
