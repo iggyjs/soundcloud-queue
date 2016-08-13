@@ -13,3 +13,7 @@
 	font-size:15px;
 	font-family:'Nunito', sans-serif;
 }
+
+.button-component-queue{
+	float: right;
+}
