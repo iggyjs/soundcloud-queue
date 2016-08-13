@@ -14,23 +14,32 @@ window.onload = function (){
 	};
 
 	var ButtonComponent = Vue.extend({
-	  template: '<button>{{buttonText}}</button >',
-	  methods: {
-		  	handleClickTest: function(){
-				var songBanner = $(this.$el).parent().parent().parent()[0];
+	  template: '<button>{{buttonText}}</button >'
+	})
+	
+	for(var i=0; i<buttons.length; i++){
+
+		var button = new ButtonComponent({
+		  data: {
+		    buttonText: 'Add'
+		  },
+		  methods: {
+		  	handleClick: function(){
+		  		var songBanner = $(this.$el).parent().parent().parent()[0];
 				var artwork = $($(songBanner).find("span.sc-artwork")[0]).css("background-image");
 		        artwork = artwork.replace('url(','').replace(')','').replace(/\"/gi, "");
 		        var songName = $(songBanner).find("a.soundTitle__title")[0].innerText;
-		     	var artistName = $(songBanner).find("div.soundTitle__secondary")[0].innerText;
-		     	var songLink = $(songBanner).find("a.soundTitle__title")[0].href;
-		     	
-		     	if (songLink.indexOf("/sets/") == -1){
+		        var artistName = $(songBanner).find("div.soundTitle__secondary")[0].innerText;
+		        var songLink = $(songBanner).find("a.soundTitle__title")[0].href;
+
+		        if (songLink.indexOf("/sets/") == -1){
 			        var payload = {
 			        	name: songName,
 			        	artist: artistName,
 			        	link: songLink,
 			        	artwork: artwork
 			        }
+
 			        chrome.runtime.sendMessage({command: "addSongContentScript", song: payload}, function(response){
 			        	console.warn("======== response =======");
 			        	console.log(response);
@@ -41,18 +50,9 @@ window.onload = function (){
 			    }
 		  	}
 		  }
-
-	})
-	
-	for(var i=0; i<buttons.length; i++){
-
-		var button = new ButtonComponent({
-		  data: {
-		    buttonText: 'Add'
-		  }
 		})
 
-		var p = "<div v-on:click='handleClickTest' class='mount-point" + globalScrollCounter + " button-component-queue'></div>"
+		var p = "<div v-on:click='handleClick' class='mount-point" + globalScrollCounter + " button-component-queue'></div>"
 
 		buttons[i].insertAdjacentHTML('afterend', p);
 		button.$mount('.mount-point' + globalScrollCounter);
@@ -69,8 +69,6 @@ function checkForMoreButtons(){
 
 	var b = document.getElementsByClassName("sound__soundActions"); 
 
-	console.log(globalScrollCounter);	
-
 	for(var i=globalScrollCounter; i<buttons.length; i++){
 
 		var button = new ButtonComponent({
@@ -78,7 +76,7 @@ function checkForMoreButtons(){
 		    buttonText: 'Add'
 		  },
 		  methods: {
-		  	handleClickTest: function(){
+		  	handleClick: function(){
 		  		var songBanner = $(this.$el).parent().parent().parent()[0];
 				var artwork = $($(songBanner).find("span.sc-artwork")[0]).css("background-image");
 		        artwork = artwork.replace('url(','').replace(')','').replace(/\"/gi, "");
@@ -93,17 +91,21 @@ function checkForMoreButtons(){
 			        	link: songLink,
 			        	artwork: artwork
 			        }
-			        console.log(payload);
+
+			        chrome.runtime.sendMessage({command: "addSongContentScript", song: payload}, function(response){
+			        	console.warn("======== response =======");
+			        	console.log(response);
+			        });
 			    }
 			    else {
-			    	alert("set!");
+			    	alert("We don't do sets ... yet!");
 			    }
 		  	}
 		  }
 
 		})
 
-		var p = "<div v-on:click='handleClickTest' class='mount-point" + globalScrollCounter + " button-component-queue'></div>"
+		var p = "<div v-on:click='handleClick' class='mount-point" + globalScrollCounter + " button-component-queue'></div>"
 
 		buttons[i].insertAdjacentHTML('afterend', p);
 		button.$mount('.mount-point' + globalScrollCounter);

@@ -10,11 +10,7 @@
 var paused;
 var stream = new Audio();		
 var counter = 0;
-var songs = [
-	{"url":"https://soundcloud.com/samsin111/thug-juice", "name": "Thug Juice", "artist": "samsin"},
-	{"url": "https://soundcloud.com/weirdinside/breathing-as-we-know-ep-out-211-vinyl-pre-order-211", "name":"breathing", "artist":"weirdinside"},
-	{"url": "https://soundcloud.com/quietluke/blue-day-3", "name":"Blue Day", "artist": "Quiet Luke"}
-];
+var songs = [];
 
 
 SC.initialize({
@@ -117,7 +113,9 @@ chrome.runtime.onMessage.addListener(
 		songs.push(newObj);
     	sendResponse({commandResponse: "song added", songs:songs});
 
-    } else if (request.command == "check"){
+    }
+
+    else if (request.command == "check"){
     	if(stream.ended){
 			nextSong();
 			sendResponse({commandResponse: "nextCalled"});
@@ -125,12 +123,16 @@ chrome.runtime.onMessage.addListener(
 			console.log("song playing");
 			sendResponse({commandResponse: "stillPlaying"});
 		}
-    } else if (request.command == "getSongs"){
+    } 
+
+    else if (request.command == "getSongs"){
     	console.log("getSongs called")
     	sendResponse({songs: songs});
     } 
     else if (request.command == "addSongContentScript"){
-    	console.log(request);
+
+    	songs.push(request.song);
+    	console.log(songs);
     	sendResponse({commandResponse: "payload received!"});
     }
 
