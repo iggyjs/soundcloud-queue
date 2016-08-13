@@ -7,7 +7,6 @@ function QueueFunctionExtension(){
 }
 
 window.onload = function (){
-	// FIXME lazyload starts before the bottom of the page
 	window.onscroll = function(ev) {
 	    if ((window.innerHeight + window.scrollY + 500) >= document.body.offsetHeight) {
 	        setTimeout(checkForMoreButtons, 3500);
@@ -15,7 +14,16 @@ window.onload = function (){
 	};
 
 	var ButtonComponent = Vue.extend({
-	  template: '<button>{{buttonText}}</button >'
+	  template: '<button>{{buttonText}}</button >',
+	  methods: {
+		  	handleClickTest: function(){
+				var songBanner = $(this.$el).parent().parent().parent()[0];
+				var artwork = $($(songBanner).find("span.sc-artwork")[0]).css("background-image");
+		        artwork = artwork.replace('url(','').replace(')','').replace(/\"/gi, "");
+		        console.log(artwork);
+		  	}
+		  }
+
 	})
 	
 	for(var i=0; i<buttons.length; i++){
@@ -23,13 +31,7 @@ window.onload = function (){
 		var button = new ButtonComponent({
 		  data: {
 		    buttonText: 'Add'
-		  },
-		  methods: {
-		  	handleClickTest: function(){
-		  		console.log(this);
-		  	}
 		  }
-
 		})
 
 		var p = "<div v-on:click='handleClickTest' class='mount-point" + globalScrollCounter + " button-component-queue'></div>"

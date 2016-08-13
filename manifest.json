@@ -16,7 +16,7 @@
         "https://soundcloud.com/*"
       ],
       "css": ["content/content.css"],
-      "js": ["content/content_script.js", "js/vue.min.js"],
+      "js": ["content/content_script.js", "js/jquery.min.js", "js/vue.min.js"],
       "run_at": "document_end"
     }
   ],
