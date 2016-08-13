@@ -22,12 +22,12 @@
     }
   ],
   "background": {
-    "scripts": ["js/jquery.min.js", "background/background.js"],
-    "persistent" : false
+    "scripts": ["js/sdk.js", "background/background.js"]
   },
   "web_accessible_resources": [
     "assets/*",
-    "templates/*"
+    "templates/*",
+    "js/*"
   ],
   "permissions": [
         "http://api.soundcloud.com/*",
