@@ -76,28 +76,30 @@ window.onload = function (){
 		  },
 		  methods: {
 		  	handleClick: function(){
-		  		var songBanner = $(this.$el).prev();
-				var artwork = $($(songBanner).find("span.sc-artwork")[0]).css("background-image");
+		  		var songBanner = $($(this.$el).prev());
+				var artwork = $(songBanner.find("span.sc-artwork")[0]).css("background-image");
 				artwork = artwork.replace('url(','').replace(')','').replace(/\"/gi, "");
-				console.log(artwork);
+				songName = songBanner.find("span.sc-truncate")[0].innerText;
+				artistName = songBanner.find("span.soundTitle__usernameText")[0].innerText;
+				songLink = "https://soundcloud.com" + songBanner.find("a.sc-link-dark").attr("href");
 
 
-		     //    if (songLink.indexOf("/sets/") == -1){
-			    //     var payload = {
-			    //     	name: songName,
-			    //     	artist: artistName,
-			    //     	url: songLink,
-			    //     	artwork: artwork
-			    //     }
+		        if (songLink.indexOf("/sets/") == -1){
+			        var payload = {
+			        	name: songName,
+			        	artist: artistName,
+			        	url: songLink,
+			        	artwork: artwork
+			        }
 
-			    //     chrome.runtime.sendMessage({command: "addSongContentScript", song: payload}, function(response){
-			    //     	console.warn("======== response =======");
-			    //     	console.log(response);
-			    //     });
-			    // }
-			    // else {
-			    // 	alert("We don't do sets ... yet!");
-			    // }
+			        chrome.runtime.sendMessage({command: "addSongContentScript", song: payload}, function(response){
+			        	console.warn("======== response =======");
+			        	console.log(response);
+			        });
+			    }
+			    else {
+			    	alert("We don't do sets ... yet!");
+			    }
 
 		  	}
 		  }
