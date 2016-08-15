@@ -1,12 +1,17 @@
 // // TODO: Add buttons to soundcloud.com
 var buttons = document.getElementsByClassName("sound__soundActions");
+var likePanelButtons = document.getElementsByClassName("soundBadgeList__item");
 var globalScrollCounter = 0;
+var likePanelCounter = 0;
 
 function QueueFunctionExtension(){
 	alert("wokring");
 }
 
 window.onload = function (){
+
+	console.log(likePanelButtons);
+
 	window.onscroll = function(ev) {
 	    if ((window.innerHeight + window.scrollY + 500) >= document.body.offsetHeight) {
 	        setTimeout(checkForMoreButtons, 3500);
@@ -57,10 +62,56 @@ window.onload = function (){
 		buttons[i].insertAdjacentHTML('afterend', p);
 		button.$mount('.mount-point' + globalScrollCounter);
 		globalScrollCounter++;
+	}
 
-	}	
+	var LikeButtonComponent = Vue.extend({
+	  template: '<button>{{likeButtonText}}</button >'
+	})
+
+	for (var i=0; i<likePanelButtons.length; i++){
+
+		var likeButton = new LikeButtonComponent({
+		  data: {
+		    likeButtonText: 'Add'
+		  },
+		  methods: {
+		  	handleClick: function(){
+		  		var songBanner = $(this.$el).prev();
+				var artwork = $($(songBanner).find("span.sc-artwork")[0]).css("background-image");
+				artwork = artwork.replace('url(','').replace(')','').replace(/\"/gi, "");
+				console.log(artwork);
+
+
+		     //    if (songLink.indexOf("/sets/") == -1){
+			    //     var payload = {
+			    //     	name: songName,
+			    //     	artist: artistName,
+			    //     	url: songLink,
+			    //     	artwork: artwork
+			    //     }
+
+			    //     chrome.runtime.sendMessage({command: "addSongContentScript", song: payload}, function(response){
+			    //     	console.warn("======== response =======");
+			    //     	console.log(response);
+			    //     });
+			    // }
+			    // else {
+			    // 	alert("We don't do sets ... yet!");
+			    // }
+
+		  	}
+		  }
+		})
+
+		var p = "<div v-on:click='handleClick' class='mount-point-like" + likePanelCounter + " like-button-component-queue'></div>"
+
+		likePanelButtons[i].insertAdjacentHTML('afterend', p);
+		likeButton.$mount('.mount-point-like' + likePanelCounter);
+		likePanelCounter++;
+	}
 
 }
+
 
 function checkForMoreButtons(){
 	var ButtonComponent = Vue.extend({
